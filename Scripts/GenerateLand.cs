@@ -21,8 +21,8 @@ public class GenerateLand : MonoBehaviour
     public static int width = 128;
     public static int depth = 128;
     public static int height = 128;
-    public int heightScale = 20;
-    public int heightOffset = 2;
+    public int heightScale = 28;
+    public int heightOffset = 100;
     public float detailScale = 25.0f;
 
     public GameObject grassBlock;
@@ -145,14 +145,14 @@ public class GenerateLand : MonoBehaviour
     {
         if (blockPos.x < 0 || blockPos.x >= width || blockPos.y < 0 || blockPos.y >= height || blockPos.z < 0 || blockPos.x >= depth) return;
         GameObject newBlock = null;
-        if (y > 115)
+        if (y > 105)
         {
             if (create)
                 newBlock = (GameObject)Instantiate(snowBlock, blockPos, Quaternion.identity);
 
             worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z] = new Block(1, create, newBlock);
         }
-        else if (y > 105)
+        else if (y > 85)
         {
             if (create)
                 newBlock = (GameObject)Instantiate(grassBlock, blockPos, Quaternion.identity);
@@ -167,7 +167,7 @@ public class GenerateLand : MonoBehaviour
             worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z] = new Block(3, create, newBlock);
         }
 
-        if (y > 80 && y < 85 && Random.Range(0, 100) < 10)
+        if (y > 11 && y < 50 && Random.Range(0, 100) < 10)
         {
             if (create)
                 newBlock = (GameObject)Instantiate(diamondBlock, blockPos, Quaternion.identity);
