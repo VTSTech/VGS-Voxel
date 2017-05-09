@@ -16,6 +16,7 @@ $RECYCLE.BIN/
 
 # Backup Files
 *.bak
+*.bak.meta
 
 # Windows shortcuts
 *.lnk
