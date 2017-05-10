@@ -18,11 +18,11 @@ public class Block
 public class GenerateLand : MonoBehaviour
 {
 
-    public static int width = 128;
-    public static int depth = 128;
-    public static int height = 128;
-    public int heightScale = 28;
-    public int heightOffset = 100;
+    public static int width = 64;
+    public static int depth = 64;
+    public static int height = 64;
+    public int heightScale = 25;
+    public int heightOffset = 25;
     public float detailScale = 25.0f;
 
     public GameObject grassBlock;
@@ -41,8 +41,8 @@ public class GenerateLand : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                int y = (int)(Mathf.PerlinNoise((x + seed) / detailScale, (z + seed) / detailScale) * heightScale)
-                               + heightOffset;
+               //int y = (int)(Mathf.PerlinNoise((x + seed) / detailScale, (z + seed) / detailScale) * heightScale) + heightOffset;
+								int y = 25;
                 Vector3 blockPos = new Vector3(x, y, z);
 
                 CreateBlock(y, blockPos, true);
@@ -56,8 +56,8 @@ public class GenerateLand : MonoBehaviour
             }
         }
 
-        DrawClouds(20, 100);
-        DigMines(5, 500);
+       //DrawClouds(20, 100);
+       //DigMines(5, 500);
     }
 
     void DrawClouds(int numClouds, int cSize)
@@ -145,14 +145,14 @@ public class GenerateLand : MonoBehaviour
     {
         if (blockPos.x < 0 || blockPos.x >= width || blockPos.y < 0 || blockPos.y >= height || blockPos.z < 0 || blockPos.x >= depth) return;
         GameObject newBlock = null;
-        if (y > 105)
+        if (y > 50)
         {
             if (create)
                 newBlock = (GameObject)Instantiate(snowBlock, blockPos, Quaternion.identity);
 
             worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z] = new Block(1, create, newBlock);
         }
-        else if (y > 85)
+        else if (y > 15)
         {
             if (create)
                 newBlock = (GameObject)Instantiate(grassBlock, blockPos, Quaternion.identity);
@@ -167,7 +167,7 @@ public class GenerateLand : MonoBehaviour
             worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z] = new Block(3, create, newBlock);
         }
 
-        if (y > 11 && y < 50 && Random.Range(0, 100) < 10)
+        if (y > 2 && y < 10 && Random.Range(0, 100) < 10)
         {
             if (create)
                 newBlock = (GameObject)Instantiate(diamondBlock, blockPos, Quaternion.identity);
