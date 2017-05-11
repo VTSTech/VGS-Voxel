@@ -1,8 +1,8 @@
 # VGS-Voxel - Voxel Engine written in Unity 5.6 and C#
 
-# Current Version: v0.0.1-r02 Pre-Alpha
+# Current Version: v0.0.1-r03 Pre-Alpha
 
-<img src="https://i.gyazo.com/54d2133e6d6e5616dc71fb2d91d13b86.png">
+<img src="https://i.gyazo.com/ee88488eac1a25cbe1e171bd14268b5d.png">
 
 <img src="https://i.gyazo.com/1b2ab154b689e2bf2e06e29d64b3ca8f.jpg">
 

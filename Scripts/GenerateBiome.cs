@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using System.IO;
+using System.Text;
 
 public class Block
 {
@@ -15,7 +18,7 @@ public class Block
     }
 }
 
-public class GenerateLand : MonoBehaviour
+public class GenerateBiome : MonoBehaviour
 {
 
     public static int width = 64;
@@ -30,13 +33,16 @@ public class GenerateLand : MonoBehaviour
     public GameObject snowBlock;
     public GameObject cloudBlock;
     public GameObject diamondBlock;
-
-    Block[,,] worldBlocks = new Block[width, height, depth];
+		private int seed = 0;
+	  Block[,,] worldBlocks = new Block[width, height, depth];
 
     // Use this for initialization
     void Start()
     {
-        int seed = (int)Network.time * 10;
+				GameObject SeedValue = GameObject.FindGameObjectWithTag("ScriptsObject");
+				seed = SeedValue.GetComponent<GenerateWorld>().GetSeed();
+				GameObject SeedLabel = GameObject.FindGameObjectWithTag("seed");
+				SeedLabel.GetComponent<Text>().text = "Seed: " + seed;
         for (int z = 0; z < depth; z++)
         {
             for (int x = 0; x < width; x++)
