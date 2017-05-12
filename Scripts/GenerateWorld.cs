@@ -7,11 +7,6 @@ using System.Text;
 public class GenerateWorld : MonoBehaviour
 	{
 
-	public int seed = 0;
-	void Awake ()
-	{
-		seed = (int)Network.time * 20;	
-	}
 	// Use this for initialization
 	void Start ()
 	{
@@ -22,9 +17,5 @@ public class GenerateWorld : MonoBehaviour
 	void Update ()
 	{
 		
-	}
-	public int GetSeed ()
-	{
-        return seed;
 	}
 }

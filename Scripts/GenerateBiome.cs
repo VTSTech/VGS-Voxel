@@ -33,16 +33,20 @@ public class GenerateBiome : MonoBehaviour
     public GameObject snowBlock;
     public GameObject cloudBlock;
     public GameObject diamondBlock;
-		private int seed = 0;
-	  Block[,,] worldBlocks = new Block[width, height, depth];
+    public GameObject cobblestoneBlock;
+    public GameObject dirtBlock;
+    public GameObject logBlock;
+
+	private int seed = 0;
+	Block[,,] worldBlocks = new Block[width, height, depth];
 
     // Use this for initialization
     void Start()
     {
-				GameObject SeedValue = GameObject.FindGameObjectWithTag("ScriptsObject");
-				seed = SeedValue.GetComponent<GenerateWorld>().GetSeed();
-				GameObject SeedLabel = GameObject.FindGameObjectWithTag("seed");
-				SeedLabel.GetComponent<Text>().text = "Seed: " + seed;
+		GameObject SeedValue = GameObject.FindGameObjectWithTag("ScriptsObject");
+		seed = SeedValue.GetComponent<GameManager>().GetSeed();
+		GameObject SeedLabel = GameObject.FindGameObjectWithTag("seed");
+		SeedLabel.GetComponent<Text>().text = "Seed: " + seed;
         for (int z = 0; z < depth; z++)
         {
             for (int x = 0; x < width; x++)
@@ -161,14 +165,14 @@ public class GenerateBiome : MonoBehaviour
         else if (y > 15)
         {
             if (create)
-                newBlock = (GameObject)Instantiate(grassBlock, blockPos, Quaternion.identity);
+                newBlock = (GameObject)Instantiate(cobblestoneBlock, blockPos, Quaternion.identity);
 
             worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z] = new Block(2, create, newBlock);
         }
         else
         {
             if (create)
-                newBlock = (GameObject)Instantiate(sandBlock, blockPos, Quaternion.identity);
+                newBlock = (GameObject)Instantiate(dirtBlock, blockPos, Quaternion.identity);
 
             worldBlocks[(int)blockPos.x, (int)blockPos.y, (int)blockPos.z] = new Block(3, create, newBlock);
         }
@@ -265,6 +269,9 @@ public class GenerateBiome : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		GameObject POSLabel = GameObject.FindGameObjectWithTag("pos");
+	    GameObject player = GameObject.FindGameObjectWithTag("Player");
+        POSLabel.GetComponent<Text>().text = "X " + player.transform.position.x + " Y " + player.transform.position.y + " Z " + player.transform.position.z;
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
